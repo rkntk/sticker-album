@@ -54,20 +54,18 @@ const collectedCountEl = document.getElementById('collected-count');
 const albumGrid = document.getElementById('album-grid');
 const tabButtons = document.querySelectorAll('.tab-btn');
 
-// --- ИСПРАВЛЕНИЕ ОШИБКИ С ПАМЯТЬЮ ---
+// Безопасное чтение localStorage
 let collectedStickers = [];
 const storedData = localStorage.getItem('collectedStickers');
-
 try {
   if (storedData) {
     const parsed = JSON.parse(storedData);
-    // Проверка: если там массив строк - оставляем, если что-то другое - сбрасываем
     if (Array.isArray(parsed)) {
       collectedStickers = parsed.filter(id => stickers.some(s => s.id === id));
     }
   }
 } catch (e) {
-  console.error('Ошибка чтения localStorage, сбрасываем коллекцию', e);
+  console.error('Ошибка localStorage, сбрасываем коллекцию', e);
   collectedStickers = [];
   localStorage.removeItem('collectedStickers');
 }
@@ -84,7 +82,8 @@ function getStarsHtml(count) {
 
 function renderAlbum() {
   albumGrid.innerHTML = '';
-  
+
+  // Определяем, какие наклейки показывать
   const visibleStickers = stickers.filter(sticker => {
     if (currentTeamFilter === 'all') return true;
     return sticker.team === currentTeamFilter;
@@ -95,34 +94,27 @@ function renderAlbum() {
     return;
   }
 
-  // Рисуем сетку строго по позициям (от 1 до 6)
-  for (let i = 1; i <= 6; i++) {
-    const posClass = `pos-\${i}`;
-    const sticker = stickers.find(s => s.pos === posClass);
-    
-    // Если наклейка не относится к текущей команде, пропускаем ячейку (не рисуем ничего, чтобы не было дыр)
-    if (sticker.team !== currentTeamFilter && currentTeamFilter !== 'all') {
-      continue; 
-    }
-
+  // ВАЖНО: теперь мы рисуем только те позиции, которые есть у видимых наклеек.
+  // Это убирает ошибку "undefined (reading 'id')", потому что мы не пытаемся 
+  // найти наклейку для позиции, которой нет в текущем фильтре.
+  visibleStickers.forEach(sticker => {
     const card = document.createElement('div');
     const isCollected = collectedStickers.includes(sticker.id);
 
     if (isCollected) {
-      card.className = `sticker-card \${posClass}`;
-      // onerror подставит серый квадрат, если картинки нет, но не сломает скрипт
+      card.className = `sticker-card \${sticker.pos}`;
       card.innerHTML = `
         <img src="${sticker.img}" alt="${sticker.player}" onerror="this.src='https://via.placeholder.com/80?text=Err'" />
         <h3>\${sticker.player}</h3>
         \${getStarsHtml(sticker.rarity)}
       `;
     } else {
-      card.className = `empty-slot \${posClass}`;
+      card.className = `empty-slot \${sticker.pos}`;
       card.textContent = '?';
     }
-    
+
     albumGrid.appendChild(card);
-  }
+  });
 
   collectedCountEl.textContent = collectedStickers.length;
 }
@@ -137,21 +129,18 @@ tabButtons.forEach(btn => {
 });
 
 getStickerBtn.addEventListener('click', () => {
-  // Проверка: собран ли весь альбом
   if (collectedStickers.length >= stickers.length) {
     alert('Поздравляю! Ты собрал весь альбом!');
     return;
   }
 
-  // Логика выбора случайной наклейки
   let attempts = 0;
   let newSticker = null;
-  
-  // Пытаемся найти наклейку, которой нет в коллекции (максимум 100 попыток, чтобы не зависнуть)
+
   while (attempts < 100) {
     const randomIndex = Math.floor(Math.random() * stickers.length);
     const candidate = stickers[randomIndex];
-    
+
     if (!collectedStickers.includes(candidate.id)) {
       newSticker = candidate;
       break;
@@ -164,9 +153,7 @@ getStickerBtn.addEventListener('click', () => {
     localStorage.setItem('collectedStickers', JSON.stringify(collectedStickers));
     renderAlbum();
   } else {
-    // Этот блок сработает только если цикл не нашел свободную наклейку, 
-    // но проверка в начале должна была это предотвратить.
-    alert('Что-то пошло не так при выборе наклейки. Обновите страницу.');
+    alert('Не удалось выбрать новую наклейку. Обновите страницу.');
   }
 });
 
