@@ -3,19 +3,19 @@ const stickers = [
     id: 's1', 
     name: 'Космическая кошка', 
     rarity: 'обычная', 
-    img: 'https://via.placeholder.com/100/FF5733/FFFFFF?text=Cat' 
+    img: 's1.jpg' 
   },
   { 
     id: 's2', 
     name: 'Пиратский енот', 
     rarity: 'редкая', 
-    img: 'https://via.placeholder.com/100/33FF57/000000?text=Raccoon' 
+    img: 's2.png' 
   },
   { 
     id: 's3', 
     name: 'Волшебный дракон', 
     rarity: 'эпическая', 
-    img: 'https://via.placeholder.com/100/3357FF/FFFFFF?text=Dragon' 
+    img: 's3' 
   }
 ];
 
