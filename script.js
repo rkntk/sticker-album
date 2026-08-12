@@ -1,7 +1,7 @@
-const stickers = [
-  { id: 's1', name: 'Космическая кошка', rarity: 'обычная', img: 'stickers/s1.png' },
-  { id: 's2', name: 'Пиратский енот', rarity: 'редкая', img: 'stickers/s2.png' },
-  { id: 's3', name: 'Волшебный дракон', rarity: 'эпическая', img: 'stickers/s3.png' }
+п»їconst stickers = [
+  { id: 's1', name: 'РљРѕСЃРјРёС‡РµСЃРєР°СЏ РєРѕС€РєР°', rarity: 'РѕР±С‹С‡РЅР°СЏ', img: 'stickers/s1.png' },
+  { id: 's2', name: 'РџРёСЂР°С‚СЃРєРёР№ РµРЅРѕС‚', rarity: 'СЂРµРґРєР°СЏ', img: 'stickers/s2.png' },
+  { id: 's3', name: 'Р’РѕР»С€РµР±РЅС‹Р№ РґСЂР°РєРѕРЅ', rarity: 'СЌРїРёС‡РµСЃРєР°СЏ', img: 'stickers/s3.png' }
 ];
 
 let userCollection = JSON.parse(localStorage.getItem('sticker_album_collection')) || [];
@@ -53,7 +53,7 @@ btn.addEventListener('click', () => {
     localStorage.setItem('sticker_album_collection', JSON.stringify(userCollection));
     renderCollection();
   } else {
-    alert('Такая наклейка уже есть в коллекции!');
+    alert('РўР°РєР°СЏ РЅР°РєР»РµР№РєР° СѓР¶Рµ РµСЃС‚СЊ РІ РєРѕР»Р»РµРєС†РёРё!');
   }
 });
 
