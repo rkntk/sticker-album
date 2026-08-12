@@ -4,11 +4,11 @@
   background-color: #f5f5f5;
 }
 
-/* Стили для кнопки */
+/* Стили кнопки */
 #get-sticker-btn {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #4CAF50; /* Зелёный цвет */
+  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -20,37 +20,99 @@
   background-color: #45a049;
 }
 
-#album-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
+/* Табы (переключатели команд) */
+.tabs {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
 }
 
+.tab-btn {
+  padding: 8px 16px;
+  background: #ddd;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #333;
+  color: white;
+}
+
+.tab-btn:hover:not(.active) {
+  background: #ccc;
+}
+
+/* Сетка альбома */
+#album-grid {
+  display: grid;
+  /* Создаем сетку 3x2 (6 ячеек). Можно менять под свои нужды */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 15px;
+  min-height: 300px;
+}
+
+/* Карточка наклейки */
 .sticker-card {
+  position: relative;
   border: 2px solid #ccc;
   border-radius: 8px;
   padding: 10px;
   text-align: center;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Фиксируем позицию карточки в сетке */
+.sticker-card.pos-1 { grid-column: 1; grid-row: 1; }
+.sticker-card.pos-2 { grid-column: 2; grid-row: 1; }
+.sticker-card.pos-3 { grid-column: 3; grid-row: 1; }
+.sticker-card.pos-4 { grid-column: 1; grid-row: 2; }
+.sticker-card.pos-5 { grid-column: 2; grid-row: 2; }
+.sticker-card.pos-6 { grid-column: 3; grid-row: 2; }
+
 .sticker-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin-bottom: 8px;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
   border-radius: 4px;
+  margin-bottom: 8px;
 }
 
 .sticker-card h3 {
   margin: 0 0 5px 0;
   font-size: 14px;
+  color: #333;
 }
 
-.sticker-card p {
-  margin: 0;
+/* Контейнер для звёзд */
+.stars {
   font-size: 12px;
-  color: #555;
+  color: #ff9800;
+  display: flex;
+  justify-content: center;
 }
+
+/* Пустая ячейка (заглушка) */
+.empty-slot {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  background: #fafafa;
+}
+
+.empty-slot.pos-1 { grid-column: 1; grid-row: 1; }
+.empty-slot.pos-2 { grid-column: 2; grid-row: 1; }
+.empty-slot.pos-3 { grid-column: 3; grid-row: 1; }
+.empty-slot.pos-4 { grid-column: 1; grid-row: 2; }
+.empty-slot.pos-5 { grid-column: 2; grid-row: 2; }
+.empty-slot.pos-6 { grid-column: 3; grid-row: 2; }

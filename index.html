@@ -8,17 +8,22 @@
 <body>
   <h1>Альбом наклеек</h1>
 
-  <!-- Кнопка теперь явно type="button" -->
   <button id="get-sticker-btn" type="button">Получить наклейку</button>
-  
-  <p>Собрано: <span id="collected-count">0</span> из 3</p>
+  <p>Собрано: <span id="collected-count">0</span> из 6</p>
+
+  <!-- Переключатель команд -->
+  <div class="tabs">
+    <button class="tab-btn active" data-team="all">Все</button>
+    <button class="tab-btn" data-team="team-a">Команда А</button>
+    <button class="tab-btn" data-team="team-b">Команда Б</button>
+  </div>
 
   <section id="album">
     <h2>Мой альбом</h2>
+    <!-- Сетка альбома -->
     <div id="album-grid"></div>
   </section>
 
-  <!-- Скрипт должен быть в конце body -->
   <script src="script.js"></script>
 </body>
 </html>
