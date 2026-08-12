@@ -13,7 +13,6 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* --- Стили кнопки получения наклейки --- */
 #get-sticker-btn {
   display: block;
   width: 100%;
@@ -22,7 +21,7 @@ h1 {
   padding: 12px 20px;
   font-size: 18px;
   font-weight: bold;
-  background-color: #27ae60; /* Зеленый цвет */
+  background-color: #27ae60;
   color: white;
   border: none;
   border-radius: 8px;
@@ -46,7 +45,6 @@ h1 {
   color: #555;
 }
 
-/* --- Стили табов (переключатель команд) --- */
 .tabs {
   display: flex;
   justify-content: center;
@@ -77,18 +75,15 @@ h1 {
   background-color: #dfe6e9;
 }
 
-/* --- Стили сетки альбома --- */
 #album-grid {
   display: grid;
-  /* Адаптивная сетка: карточки сами занимают место */
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  grid-auto-rows: 160px; /* Фиксированная высота карточек для ровности */
+  grid-auto-rows: 160px;
   gap: 15px;
   min-height: 200px;
   padding-bottom: 20px;
 }
 
-/* --- Стили карточки (собранная наклейка) --- */
 .sticker-card {
   display: flex;
   flex-direction: column;
@@ -104,7 +99,6 @@ h1 {
   overflow: hidden;
 }
 
-/* --- Стили пустой ячейки (несобранная наклейка) --- */
 .empty-slot {
   display: flex;
   align-items: center;
@@ -118,7 +112,6 @@ h1 {
   user-select: none;
 }
 
-/* --- Элементы внутри карточки --- */
 .sticker-card img {
   width: 80px;
   height: 80px;
@@ -138,12 +131,11 @@ h1 {
 
 .stars {
   font-size: 14px;
-  color: #f1c40f; /* Золотой цвет звезд */
+  color: #f1c40f;
   font-weight: bold;
   display: block;
 }
 
-/* Адаптив для мобильных устройств */
 @media (max-width: 480px) {
   .tabs {
     justify-content: space-around;

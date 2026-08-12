@@ -54,9 +54,9 @@ const collectedCountEl = document.getElementById('collected-count');
 const albumGrid = document.getElementById('album-grid');
 const tabButtons = document.querySelectorAll('.tab-btn');
 
-// Безопасное чтение localStorage
 let collectedStickers = [];
 const storedData = localStorage.getItem('collectedStickers');
+
 try {
   if (storedData) {
     const parsed = JSON.parse(storedData);
@@ -83,33 +83,29 @@ function getStarsHtml(count) {
 function renderAlbum() {
   albumGrid.innerHTML = '';
 
-  // Определяем, какие наклейки показывать
   const visibleStickers = stickers.filter(sticker => {
     if (currentTeamFilter === 'all') return true;
     return sticker.team === currentTeamFilter;
   });
 
   if (visibleStickers.length === 0) {
-    albumGrid.innerHTML = '<p style="color: #777;">Нет наклеек для этой команды</p>';
+    albumGrid.innerHTML = '<p style="color: #777; text-align: center;">Нет наклеек для этой команды</p>';
     return;
   }
 
-  // ВАЖНО: теперь мы рисуем только те позиции, которые есть у видимых наклеек.
-  // Это убирает ошибку "undefined (reading 'id')", потому что мы не пытаемся 
-  // найти наклейку для позиции, которой нет в текущем фильтре.
   visibleStickers.forEach(sticker => {
     const card = document.createElement('div');
     const isCollected = collectedStickers.includes(sticker.id);
 
     if (isCollected) {
-      card.className = `sticker-card \${sticker.pos}`;
+      card.className = 'sticker-card';
       card.innerHTML = `
-        <img src="${sticker.img}" alt="${sticker.player}" onerror="this.src='https://via.placeholder.com/80?text=Err'" />
+        <img src="${sticker.img}" alt="${sticker.player}" onerror="this.src='https://via.placeholder.com/80?text=Err'">
         <h3>\${sticker.player}</h3>
         \${getStarsHtml(sticker.rarity)}
       `;
     } else {
-      card.className = `empty-slot \${sticker.pos}`;
+      card.className = 'empty-slot';
       card.textContent = '?';
     }
 
