@@ -1,67 +1,76 @@
-﻿body {
-  font-family: system-ui, -apple-system, sans-serif;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 16px;
+const stickers = [
+  { 
+    id: 's1', 
+    name: 'Космическая кошка', 
+    rarity: 'обычная', 
+    img: 'https://via.placeholder.com/100/FF5733/FFFFFF?text=Cat' 
+  },
+  { 
+    id: 's2', 
+    name: 'Пиратский енот', 
+    rarity: 'редкая', 
+    img: 'https://via.placeholder.com/100/33FF57/000000?text=Raccoon' 
+  },
+  { 
+    id: 's3', 
+    name: 'Волшебный дракон', 
+    rarity: 'эпическая', 
+    img: 'https://via.placeholder.com/100/3357FF/FFFFFF?text=Dragon' 
+  }
+];
+
+const getStickerBtn = document.getElementById('get-sticker-btn');
+const collectedCountEl = document.getElementById('collected-count');
+const albumGrid = document.getElementById('album-grid');
+
+// Загружаем собранные наклейки из localStorage
+let collectedStickers = JSON.parse(localStorage.getItem('collectedStickers')) || [];
+
+// Функция отрисовки альбома
+function renderAlbum() {
+  albumGrid.innerHTML = '';
+  
+  if (collectedStickers.length === 0) {
+    albumGrid.innerHTML = '<p>Альбом пока пуст. Получи первую наклейку!</p>';
+    return;
+  }
+
+  collectedStickers.forEach(stickerId => {
+    const sticker = stickers.find(s => s.id === stickerId);
+    if (sticker) {
+      const card = document.createElement('div');
+      card.className = 'sticker-card';
+      card.innerHTML = `
+        <img src="${sticker.img}" alt="${sticker.name}" />
+        <h3>\${sticker.name}</h3>
+        <p>\${sticker.rarity}</p>
+      `;
+      albumGrid.appendChild(card);
+    }
+  });
+
+  collectedCountEl.textContent = collectedStickers.length;
 }
 
-header {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-}
+// Функция получения новой наклейки
+getStickerBtn.addEventListener('click', () => {
+  if (collectedStickers.length >= stickers.length) {
+    alert('Поздравляю! Ты собрал весь альбом!');
+    return;
+  }
 
-.controls {
-  margin-bottom: 24px;
-}
+  // Выбираем случайную наклейку, которой ещё нет в альбоме
+  let newSticker;
+  do {
+    const randomIndex = Math.floor(Math.random() * stickers.length);
+    newSticker = stickers[randomIndex];
+  } while (collectedStickers.includes(newSticker.id));
 
-button {
-  padding: 10px 18px;
-  font-size: 16px;
-  cursor: pointer;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-}
+  collectedStickers.push(newSticker.id);
+  localStorage.setItem('collectedStickers', JSON.stringify(collectedStickers));
+  
+  renderAlbum();
+});
 
-button:disabled {
-  background: #ccc;
-}
-
-.hint {
-  display: block;
-  margin-top: 8px;
-  color: #555;
-  font-size: 14px;
-}
-
-.album-grid, .catalog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 12px;
-}
-
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 8px;
-  text-align: center;
-  background: white;
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.card h3 {
-  margin: 6px 0 2px;
-  font-size: 13px;
-}
-
-.card .rarity {
-  font-size: 12px;
-  color: #777;
-}
+// При загрузке страницы сразу показываем альбом
+renderAlbum();
