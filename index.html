@@ -2,14 +2,18 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Альбом наклеек</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>Альбом наклеек</h1>
 
-  <button id="get-sticker-btn" type="button">Получить наклейку</button>
-  <p class="stats">Собрано: <span id="collected-count">0</span> из 6</p>
+  <button id="get-sticker-btn">Получить наклейку</button>
+
+  <div class="stats">
+    Собрано: <span id="collected-count">0</span> из 6
+  </div>
 
   <div class="tabs">
     <button class="tab-btn active" data-team="all">Все</button>
@@ -17,11 +21,8 @@
     <button class="tab-btn" data-team="team-b">Команда Б</button>
   </div>
 
-  <section id="album">
-    <h2>Мой альбом</h2>
-    <div id="album-grid"></div>
-  </section>
+  <div id="album-grid"></div>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

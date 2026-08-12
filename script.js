@@ -99,8 +99,9 @@ function renderAlbum() {
 
     if (isCollected) {
       card.className = 'sticker-card';
+      // Встроенная SVG-заглушка на случай, если картинка не загрузится
       card.innerHTML = `
-        <img src="${sticker.img}" alt="${sticker.player}" onerror="this.src='https://via.placeholder.com/80?text=Err'">
+        <img src="${sticker.img}" alt="${sticker.player}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\'><rect width=\'80\' height=\'80\' fill=\'#eee\'/><text x=\'10\' y=\'45\' font-size=\'12\' fill=\'#888\'>No image</text></svg>'" />
         <h3>\${sticker.player}</h3>
         \${getStarsHtml(sticker.rarity)}
       `;
