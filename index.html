@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +8,9 @@
 <body>
   <h1>Альбом наклеек</h1>
 
-  <button id="get-sticker-btn">Получить наклейку</button>
+  <!-- Кнопка теперь явно type="button" -->
+  <button id="get-sticker-btn" type="button">Получить наклейку</button>
+  
   <p>Собрано: <span id="collected-count">0</span> из 3</p>
 
   <section id="album">
@@ -16,6 +18,7 @@
     <div id="album-grid"></div>
   </section>
 
+  <!-- Скрипт должен быть в конце body -->
   <script src="script.js"></script>
 </body>
 </html>
