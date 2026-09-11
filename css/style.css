@@ -1,0 +1,387 @@
+:root {
+  /* Базовые тёмные тона (чуть мягче, чем раньше) */
+  --bg-page: #12121a;
+  --bg-header: #1a1f2b;
+  --bg-card: #1a1f2b;
+  --bg-album-card: #0d2a4d;
+  --bg-slot-empty: #12121a;
+  --bg-slot-filled: #1a1f2b;
+  --bg-modal: #1a1f2b;
+  
+  /* ГЛАВНЫЙ АКЦЕНТНЫЙ ЦВЕТ (из твоего фото) */
+  --accent-primary: #2ecc71;
+  --accent-primary-hover: #27ae60;
+  
+  /* Кнопки действий (синие, как у тебя, но чуть светлее) */
+  --accent-btn-primary: #4f8ffa;
+  --accent-btn-primary-hover: #3b6ee0;
+  --accent-btn-secondary: #0f3460;
+  --accent-btn-secondary-hover: #1a4a80;
+
+  /* Текст */
+  --text-main: #e5e5e5;
+  --text-secondary: #b0b0b0;
+  --text-muted: #858585;
+  
+  /* Заголовки теперь тоже в акцентном зелёном — это сразу задаёт стиль */
+  --text-header-title: var(--accent-primary);
+  
+  /* Прогресс и границы */
+  --border-color: #2a2a3a;
+  --progress-bg: #12121a;
+  --progress-fill: var(--accent-primary);
+
+  /* Тени */
+  --shadow-base: rgba(0, 0, 0, 0.6);
+  --shadow-hover: rgba(46, 204, 113, 0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.main-title {
+  margin: 0;
+  color: var(--text-header-title);
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.title-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.version,
+.by-text,
+.year-text,
+.author-name-link {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.author-name-link {
+  text-decoration: none;
+}
+
+.author-name-link:hover {
+  color: var(--accent-primary);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: var(--bg-page);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+header {
+    background: var(--bg-header);
+    padding: 15px 20px;
+    box-shadow: 0 2px 10px var(--shadow-base);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+header h1 { color: var(--text-header-title); font-size: 22px; }
+
+.header-info { font-size: 16px; color: var(--text-secondary); display: flex; align-items: center; gap: 20px; }
+
+.back-link { color: var(--text-header-title); text-decoration: none; font-size: 18px; }
+.back-link:hover { text-decoration: underline; }
+
+.action-link { color: var(--accent-primary); text-decoration: none; font-weight: bold; }
+.action-link:hover { text-decoration: underline; }
+.action-link.disabled { color: #666; cursor: not-allowed; opacity: 0.5; pointer-events: none; }
+
+main { max-width: 1400px; margin: 0 auto; padding: 20px; }
+
+.section-box { background: var(--bg-card); border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+
+h2 { color: var(--text-header-title); margin-bottom: 10px; font-size: 20px; }
+h3 { color: var(--text-header-title); margin-bottom: 5px; font-size: 16px; }
+
+.code-input-group { display: flex; gap: 10px; margin-top: 10px; }
+
+#code-input {
+    flex: 1; padding: 12px 16px; font-size: 18px; text-transform: uppercase;
+    border: 2px solid #0f3460; border-radius: 8px; background: var(--bg-page);
+    color: var(--text-main); outline: none; letter-spacing: 2px;
+}
+#code-input:focus { border-color: var(--accent-primary); }
+
+button {
+    padding: 12px 25px; font-size: 16px; background: var(--accent-primary); color: white;
+    border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s, opacity 0.2s;
+}
+button:hover { background: var(--accent-primary-hover); }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-primary {
+    background: var(--accent-btn-primary); color: white; border: none; padding: 10px 20px;
+    border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 15px;
+}
+.btn-primary:hover { background: var(--accent-btn-primary-hover); }
+
+.btn-secondary {
+    background: var(--accent-btn-secondary); color: white; border: none; padding: 12px 25px;
+    border-radius: 8px; cursor: pointer; font-size: 16px;
+}
+.btn-secondary:hover { background: var(--accent-btn-secondary-hover); }
+
+.btn-disabled { opacity: 0.4; cursor: not-allowed; }
+
+.albums-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+
+.album-card {
+    background: var(--bg-album-card); padding: 20px; border-radius: 10px; cursor: pointer;
+    border: 1px solid var(--border-color); transition: transform 0.2s, box-shadow 0.2s;
+}
+.album-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+
+.album-cover { font-size: 56px; margin-bottom: 10px; text-align: center; }
+
+.album-cover-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
+
+.album-info p { color: var(--accent-primary); font-size: 14px; margin-bottom: 5px; }
+.album-progress-text { color: var(--text-secondary); font-size: 14px; margin-bottom: 5px; }
+.album-progress-bar { width: 100%; height: 8px; background: var(--progress-bg); border-radius: 4px; overflow: hidden; border: 1px solid var(--border-color); }
+.album-progress-fill { height: 100%; background: var(--progress-fill); transition: width 0.5s; }
+
+.album-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #333;
+    flex-wrap: wrap; gap: 10px;
+}
+
+.album-title { font-size: 24px; font-weight: bold; color: var(--text-header-title); }
+
+.album-nav-container { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.page-btn {
+    background: var(--bg-page); color: var(--text-header-title); border: 1px solid var(--text-header-title);
+    padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: 600;
+    font-size: 14px; transition: all 0.2s;
+}
+.page-btn:hover:not(:disabled) { background: var(--text-header-title); color: white; }
+.page-btn:disabled { opacity: 0.5; cursor: default; }
+.page-btn.active { background: var(--text-header-title); color: white; border-color: var(--text-header-title); }
+
+.album-stats { display: flex; gap: 20px; font-size: 14px; color: var(--text-secondary); margin-bottom: 15px; flex-wrap: wrap; }
+
+#album-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+@media (min-width: 768px) { #album-grid { grid-template-columns: repeat(8, 1fr); } }
+@media (min-width: 1200px) { #album-grid { grid-template-columns: repeat(8, 1fr); gap: 16px; } }
+
+.sticker-slot {
+    aspect-ratio: 1; background: var(--bg-slot-empty); border-radius: 10px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden; min-height: 80px; border: 1px solid var(--border-color);
+}
+.sticker-slot:hover { transform: translateY(-3px); box-shadow: 0 5px 15px var(--shadow-hover); }
+.sticker-slot.filled { background: var(--bg-slot-filled); border: 1px solid var(--accent-primary); }
+.sticker-slot.empty { cursor: default; }
+.sticker-slot img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; }
+
+.slot-number { color: #444; font-size: 18px; font-weight: bold; }
+
+.sticker-badge {
+    position: absolute; top: 4px; right: 4px; background: var(--accent-primary); color: white;
+    font-size: 11px; padding: 2px 6px; border-radius: 12px; z-index: 10; font-weight: bold;
+}
+
+.loader-text { text-align: center; color: var(--accent-primary); margin-top: 40px; font-weight: bold; }
+
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); display: flex; justify-content: center;
+    align-items: center; z-index: 1000;
+}
+.modal.hidden { display: none; }
+
+.modal-content { background: var(--bg-modal); padding: 30px; border-radius: 14px; max-width: 800px; width: 90%; text-align: center; position: relative; }
+.modal-content-small { max-width: 350px; }
+.modal-content img { width: 100px; height: 100px; object-fit: cover; border-radius: 8px; margin: 0 auto 10px; display: block; }
+
+.modal-close {
+    position: absolute; top: 12px; right: 16px; background: none; border: none;
+    color: #9ca3af; font-size: 28px; cursor: pointer; padding: 0; line-height: 1;
+}
+.modal-close:hover { color: white; background: none; }
+
+.modal-success { color: var(--accent-primary); margin-bottom: 10px; }
+#modal-name { color: var(--text-header-title); font-size: 20px; margin-bottom: 8px; }
+#modal-info { font-size: 14px; color: var(--text-secondary); margin-bottom: 15px; line-height: 1.6; }
+
+.pack-stickers { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 12px; 
+    justify-content: center; 
+    margin: 20px 0; 
+}
+
+.pack-sticker {
+    width: 110px; 
+    /* Высота теперь не фиксирована, она подстроится под контент (фото + текст) */
+    background: var(--bg-album-card); 
+    border-radius: 10px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 8px; 
+    border: 1px solid var(--border-color);
+    box-sizing: border-box; 
+    /* Опционально: если хочешь, чтобы все карточки были одной высоты даже с разной длиной текста, раскомментируй строку ниже: */
+    /* min-height: 140px; */ 
+}
+
+.pack-sticker.is-new { 
+    border: 3px solid var(--accent-primary); 
+}
+
+.pack-sticker.is-duplicate { 
+    border: 3px solid var(--text-error); 
+    opacity: 0.7; 
+}
+
+/* --- ИСПРАВЛЕННЫЙ СТИЛЬ ДЛЯ ФОТО --- */
+.pack-sticker img { 
+    /* Убрали width: 100% и height: 75px */
+    max-width: 90px;       /* Ограничиваем ширину, чтобы не вылезало за рамки */
+    max-height: 90px;      /* Ограничиваем высоту, чтобы карточки не были гигантскими */
+    
+    /* ГЛАВНОЕ ИЗМЕНЕНИЕ: contain показывает картинку целиком, ничего не обрезая */
+    object-fit: contain;   
+    
+    border-radius: 6px; 
+    display: block; 
+    margin-bottom: 6px;     /* Отступ до текста */
+    
+    /* Эти свойства нужны, чтобы картинка центрировалась, если она меньше лимитов */
+    align-self: center;    
+}
+
+.pack-sticker-name { 
+    margin: 0; 
+    font-size: 11px; 
+    color: var(--text-main); 
+    text-align: center; 
+    /* Теперь текст может занимать 1-2 строки */
+    max-width: 100%; 
+    line-height: 1.2; 
+    flex-grow: 1; 
+}
+
+.pack-sticker-label { 
+    font-size: 9px; 
+    font-weight: bold; 
+    margin-top: 2px;
+    text-transform: uppercase;
+}
+
+.is-new .pack-sticker-label { 
+    color: var(--accent-primary); 
+}
+
+.is-duplicate .pack-sticker-label { 
+    color: var(--text-error); 
+}
+
+.code-message { margin-top: 10px; font-weight: bold; }
+.code-message.error { color: var(--text-error); }
+.code-message.success { color: var(--accent-primary); }
+
+.info-text { color: var(--text-secondary); margin-bottom: 10px; line-height: 1.5; }
+.info-text-muted { color: var(--text-muted); margin-bottom: 15px; }
+
+.duplicates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; }
+
+.trade-sticker {
+    aspect-ratio: 1; background: var(--bg-page); border-radius: 10px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; border: 2px solid transparent; padding: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.trade-sticker:hover { border-color: var(--accent-primary); }
+.trade-sticker.selected { border-color: var(--accent-primary); box-shadow: 0 0 12px rgba(46, 204, 113, 0.4); }
+.trade-sticker img { width: 55px; height: 55px; object-fit: cover; border-radius: 6px; }
+.trade-emoji { font-size: 36px; }
+.trade-name { font-size: 10px; color: var(--text-secondary); text-align: center; margin-top: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.trade-count { font-size: 12px; color: var(--accent-primary); font-weight: bold; }
+.no-duplicates { grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 20px; }
+
+.selected-area { display: flex; gap: 20px; justify-content: center; align-items: center; min-height: 120px; flex-wrap: wrap; }
+
+.exchange-slot {
+    width: 110px; 
+    height: 110px; 
+    background: var(--bg-album-card); 
+    border: 2px dashed var(--border-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.exchange-slot:hover {
+    border-color: var(--accent-primary);
+    background: rgba(46, 204, 113, 0.1);
+}
+.exchange-slot img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.code-hint-box {
+    margin-top: 15px;
+    padding: 12px 16px;
+    background: rgba(46, 204, 113, 0.08); /* Очень лёгкий зелёный фон */
+    border: 1px solid rgba(46, 204, 113, 0.2); /* Лёгкая зелёная рамка */
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: 0 2px 8px rgba(46, 204, 113, 0.05);
+}
+
+.code-hint-icon {
+    margin-top: 2px; /* Чуть выравниваем иконку по вертикали */
+    flex-shrink: 0; /* Чтобы иконка не сплющивалась */
+}
+
+.code-hint-text {
+    display: block;
+}
+
+/* Опционально: стиль для иконки при наведении на весь блок */
+.code-hint-box:hover {
+    border-color: var(--accent-primary);
+    background: rgba(46, 204, 113, 0.12);
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.15);
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Альбом наклеек</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="back-link">&larr; Назад</a>
+            <h1>Альбом наклеек</h1>
+            <a href="exchange.html" class="action-link">Обмен повторок</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="album-header">
+            <h2 class="album-title">Загрузка...</h2>
+            <div class="album-nav-container" id="page-buttons-container"></div>
+        </div>
+
+        <div class="album-stats">
+            <span class="total-count"></span>
+            <span class="collected-count"></span>
+        </div>
+
+        <div id="album-grid"></div>
+        <div class="loader-text">Загрузка...</div>
+    </main>
+
+    <div id="detail-modal" class="modal hidden">
+        <div class="modal-content modal-content-small">
+            <button class="modal-close" onclick="closeDetailModal()">&times;</button>
+            <img id="modal-img" src="" alt="">
+            <h3 id="modal-name"></h3>
+            <div id="modal-info"></div>
+            <button onclick="closeDetailModal()" class="btn-primary">Закрыть</button>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/album.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof initAlbum === 'function') initAlbum();
+        });
+    </script>
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обмен повторок</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="back-link">&larr; Назад</a>
+            <h1>Обмен повторок</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="section-box">
+            <h2>Как это работает</h2>
+            <p class="info-text">Выберите 2 повторные наклейки — получите 1 случайную взамен. Она может оказаться как новой, так и повторной.</p>
+        </section>
+
+        <section class="section-box">
+            <h2>Ваши повторные наклейки</h2>
+            <p class="info-text-muted">Кликните на наклейку, чтобы выбрать её. Нужно выбрать 2 штуки.</p>
+            <div id="duplicates-grid" class="duplicates-grid"></div>
+        </section>
+
+        <section class="section-box">
+            <h2>Выбранные для обмена</h2>
+            <div class="selected-area">
+                <div id="selected-1" class="exchange-slot">
+                    <span class="slot-question">?</span>
+                </div>
+                <div class="exchange-plus">+</div>
+                <div id="selected-2" class="exchange-slot">
+                    <span class="slot-question">?</span>
+                </div>
+                <div class="exchange-arrow">&hArr;</div>
+                <div id="selected-result" class="exchange-slot">
+                    <span class="slot-question">?</span>
+                </div>
+            </div>
+            <div class="exchange-buttons">
+                <button id="exchange-button" onclick="doExchange()" disabled class="btn-disabled">Обменять 2 на 1</button>
+                <button onclick="cancelSelection()" class="btn-secondary">Отменить выбор</button>
+            </div>
+            <div id="exchange-message" class="code-message exchange-message"></div>
+        </section>
+    </main>
+
+    <div id="exchange-modal" class="modal hidden">
+        <div class="modal-content modal-content-small">
+            <button class="modal-close" onclick="closeExchangeModal()">&times;</button>
+            <h2 class="modal-success">Обмен совершён!</h2>
+            <p class="info-text">Вы получили:</p>
+            <div id="exchange-result-display"></div>
+            <button onclick="closeExchangeModal()" class="btn-primary">Забрать наклейку</button>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/exchange.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+
+</body>
+</html>
