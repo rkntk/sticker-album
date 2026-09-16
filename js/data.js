@@ -201,7 +201,7 @@ var STICKER_DATA = [
     { id: 195, name: "Ликси Родригес", birthDate: "Коста-Рика", position: "Защитник", photo: "https://pics.st/d0d/2cd/e561f62c.png" },
     { id: 196, name: "Екатерина Морозова", birthDate: "Россия", position: "Защитник", photo: "https://pics.st/2b7/88c/36cc35a5.png" },
     { id: 197, name: "Тэйлор Лич", birthDate: "США", position: "Защитник", photo: "" },
-    { id: 198, name: "Ксения Кулинич", birthDate: "Россия", position: "Защитник", photo: "https://pics.st/461/f69/6cc461ce.png" },
+    { id: 198, name: "Ксения Кулинич", birthDate: "Россия", position: "Защитник", photo: "https://pics.st/d54/d1f/94f25a8b.png" },
     { id: 199, name: "Анастасия Акимова", birthDate: "Россия", position: "Защитник", photo: "https://pics.st/461/f69/6cc461ce.png" },
     { id: 200, name: "Роза Алауи Ламрен", birthDate: "Франция", position: "Защитник", photo: "https://pics.st/0cb/9f7/0cb61214.png" },
     { id: 201, name: "Кристина Бачило", birthDate: "Беларусь", position: "Защитник", photo: "" },
